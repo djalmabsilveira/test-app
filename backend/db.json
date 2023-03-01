@@ -1,0 +1,34 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Iphone",
+      "price": "10000",
+      "description": "Descrição do produto..."
+    },
+    {
+      "id": "2",
+      "name": "Notebook",
+      "price": "4500",
+      "description": "Descrição do produto..."
+    },
+    {
+      "id": "3",
+      "name": "Geladeira",
+      "price": "3700",
+      "description": "Descrição do produto..."
+    },
+    {
+      "id": "4",
+      "name": "Aspirador de pó",
+      "price": "570",
+      "description": "Descrição do produto..."
+    },
+    {
+      "id": "5",
+      "name": "TV Samsung",
+      "price": "2400",
+      "description": "Descrição do produto..."
+    }
+  ]
+}

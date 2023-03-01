@@ -1,0 +1,16 @@
+<div class="product-card">
+  <div class="card m-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.name }}</h5>
+      <p class="card-text">
+        {{ product.description }}
+      </p>
+      <p class="card-text">
+        {{ product.price | currency : "BRL" }}
+      </p>
+      <a [routerLink]="['/products', product.id]" class="btn btn-primary"
+        >Mais detalhes</a
+      >
+    </div>
+  </div>
+</div>
