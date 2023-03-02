@@ -30,5 +30,22 @@
       "price": "2400",
       "description": "Descrição do produto..."
     }
+  ],
+  "shipping-data": [
+    {
+      "type": "Full",
+      "description": "Sua entrega chegará em 24h!",
+      "price": 55.99
+    },
+    {
+      "type": "2-Day",
+      "description": "Sua entrega chegará em 2 dias!",
+      "price": 29.99
+    },
+    {
+      "type": "PAC",
+      "description": "Sua entrega chegará em até 10 dias corridos!",
+      "price": 12.99
+    }
   ]
 }

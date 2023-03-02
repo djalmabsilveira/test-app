@@ -26,7 +26,7 @@ export class ProductDetailsComponent implements OnInit {
     const productIdFromRoute = Number(routeParams.get('productId'));
 
     this.productService
-      .findById(productIdFromRoute)
+      .findProductById(productIdFromRoute)
       .subscribe((product) => (this.product = product));
   }
 

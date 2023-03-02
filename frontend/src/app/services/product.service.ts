@@ -16,7 +16,7 @@ export class ProductService {
     return this.http.get<Product[]>(`${API_URL}/products`);
   }
 
-  findById(productId: number) {
+  findProductById(productId: number) {
     return this.http.get<Product>(`${API_URL}/products/${productId}`);
   }
 }

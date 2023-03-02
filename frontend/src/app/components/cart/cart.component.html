@@ -1,6 +1,29 @@
-<h3>Seu Carrinho:</h3>
+<div>
+  <div class="m-3">
+    <h3>Seu Carrinho:</h3>
+    <div class="cart-item" *ngFor="let item of items">
+      <span>{{ item.name }}</span>
+      <span>{{ item.price | currency : "BRL" }}</span>
+    </div>
+  </div>
+  <div class="m-3">
+    <h3>Formas de Envio:</h3>
+    <div class="shipping-item" *ngFor="let shipping of shippingData | async">
+      <span>{{ shipping.type }}</span>
+      <span>{{ shipping.price | currency : "BRL" }}</span>
+    </div>
+  </div>
+  <form class="m-3" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name"> Nome </label>
+      <input id="name" type="text" formControlName="name" />
+    </div>
 
-<div class="cart-item" *ngFor="let item of items">
-  <span>{{ item.name }}</span>
-  <span>{{ item.price | currency : "BRL" }}</span>
+    <div>
+      <label for="address"> Endereço </label>
+      <input id="address" type="text" formControlName="address" />
+    </div>
+
+    <button class="button" type="submit">Finalizar Compra</button>
+  </form>
 </div>
