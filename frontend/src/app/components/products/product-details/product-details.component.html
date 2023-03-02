@@ -1,7 +1,11 @@
-<h2>Product Details</h2>
-
-<div *ngIf="product">
-  <h3>{{ product.name }}</h3>
-  <h4>{{ product.price | currency : "BRL" }}</h4>
-  <p>{{ product.description }}</p>
+<div class="card m-3" *ngIf="product">
+  <img src="..." class="card-img-top" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title text-primary">{{ product.name }}</h5>
+    <p class="card-text">{{ product.price | currency : "BRL" }}</p>
+    <p class="card-text">{{ product.description }}</p>
+    <button type="button" (click)="addToCart(product)">
+      Adicionar ao carrinho
+    </button>
+  </div>
 </div>

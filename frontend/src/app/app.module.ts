@@ -11,6 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { ProductCardComponent } from './components/products/product-card/product-card.component';
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ProductDetailsComponent } from './components/products/product-details/p
     ProductListComponent,
     ProductCardComponent,
     ProductDetailsComponent,
+    CartComponent,
   ],
   imports: [
     RouterModule,
