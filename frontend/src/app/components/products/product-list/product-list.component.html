@@ -1,5 +1,5 @@
-<div class="d-flex align-items-center flex-column">
-  <div class="d-flex flex-wrap">
+<div class="d-flex justify-content-center">
+  <div class="product-container d-flex flex-wrap">
     <div *ngFor="let product of products$ | async">
       <app-product-card [product]="product"></app-product-card>
     </div>

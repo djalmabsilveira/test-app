@@ -1,0 +1,25 @@
+.login-screen {
+  width: 100%;
+}
+
+.login-home {
+  width: 100%;
+  max-width: 1875px;
+}
+
+.login-content {
+  width: 66%;
+}
+
+.register-content {
+  border-left: 1px solid #ced4da;
+  width: 34%;
+  max-width: 640px;
+}
+
+@media (max-width: 1110px) {
+  .login-content,
+  .register-content {
+    width: 100%;
+  }
+} ;

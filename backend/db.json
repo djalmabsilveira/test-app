@@ -4,31 +4,31 @@
       "id": "1",
       "name": "Iphone",
       "price": "10000",
-      "description": "Descrição do produto..."
+      "description": "Descrição do produto... Lorem ipsum dolor sit amet. Est amet harum ab dignissimos repellendus eos ipsa neque est sequi soluta qui error libero a asperiores quasi ut galisum voluptas! Eum animi voluptas At assumenda sapiente aut ratione tempora. Ex voluptates nemo aut rerum enim sit nostrum sunt. Qui iure vitae sed provident omnis sit accusamus eligendi aut obcaecati eligendi. Est ipsam itaque in soluta error qui dolor sequi est quia consequuntur qui provident excepturi aut vero voluptatem."
     },
     {
       "id": "2",
       "name": "Notebook",
       "price": "4500",
-      "description": "Descrição do produto..."
+      "description": "Descrição do produto... Lorem ipsum dolor sit amet. Est amet harum ab dignissimos repellendus eos ipsa neque est sequi soluta qui error libero a asperiores quasi ut galisum voluptas! Eum animi voluptas At assumenda sapiente aut ratione tempora. Ex voluptates nemo aut rerum enim sit nostrum sunt. Qui iure vitae sed provident omnis sit accusamus eligendi aut obcaecati eligendi. Est ipsam itaque in soluta error qui dolor sequi est quia consequuntur qui provident excepturi aut vero voluptatem."
     },
     {
       "id": "3",
       "name": "Geladeira",
       "price": "3700",
-      "description": "Descrição do produto..."
+      "description": "Descrição do produto... Lorem ipsum dolor sit amet. Est amet harum ab dignissimos repellendus eos ipsa neque est sequi soluta qui error libero a asperiores quasi ut galisum voluptas! Eum animi voluptas At assumenda sapiente aut ratione tempora. Ex voluptates nemo aut rerum enim sit nostrum sunt. Qui iure vitae sed provident omnis sit accusamus eligendi aut obcaecati eligendi. Est ipsam itaque in soluta error qui dolor sequi est quia consequuntur qui provident excepturi aut vero voluptatem."
     },
     {
       "id": "4",
       "name": "Aspirador de pó",
       "price": "570",
-      "description": "Descrição do produto..."
+      "description": "Descrição do produto... Lorem ipsum dolor sit amet. Est amet harum ab dignissimos repellendus eos ipsa neque est sequi soluta qui error libero a asperiores quasi ut galisum voluptas! Eum animi voluptas At assumenda sapiente aut ratione tempora. Ex voluptates nemo aut rerum enim sit nostrum sunt. Qui iure vitae sed provident omnis sit accusamus eligendi aut obcaecati eligendi. Est ipsam itaque in soluta error qui dolor sequi est quia consequuntur qui provident excepturi aut vero voluptatem."
     },
     {
       "id": "5",
       "name": "TV Samsung",
       "price": "2400",
-      "description": "Descrição do produto..."
+      "description": "Descrição do produto... Lorem ipsum dolor sit amet. Est amet harum ab dignissimos repellendus eos ipsa neque est sequi soluta qui error libero a asperiores quasi ut galisum voluptas! Eum animi voluptas At assumenda sapiente aut ratione tempora. Ex voluptates nemo aut rerum enim sit nostrum sunt. Qui iure vitae sed provident omnis sit accusamus eligendi aut obcaecati eligendi. Est ipsam itaque in soluta error qui dolor sequi est quia consequuntur qui provident excepturi aut vero voluptatem."
     }
   ],
   "shipping-data": [
@@ -38,7 +38,7 @@
       "price": 55.99
     },
     {
-      "type": "2-Day",
+      "type": "2-Dias",
       "description": "Sua entrega chegará em 2 dias!",
       "price": 29.99
     },
