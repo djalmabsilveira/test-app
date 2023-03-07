@@ -1,5 +1,7 @@
-<div class="d-flex flex-wrap justify-content-center">
-  <div *ngFor="let product of products$ | async">
-    <app-product-card [product]="product"></app-product-card>
+<div class="d-flex align-items-center flex-column">
+  <div class="d-flex flex-wrap">
+    <div *ngFor="let product of products$ | async">
+      <app-product-card [product]="product"></app-product-card>
+    </div>
   </div>
 </div>
