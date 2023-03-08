@@ -37,13 +37,13 @@ p {
 /* Hyperlink */
 
 a {
-  cursor: pointer;
+  cursor: pointer !important;
   color: #1976d2;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 a:hover {
-  opacity: 0.8;
+  opacity: 0.8 !important;
 }
 
 /* Input */

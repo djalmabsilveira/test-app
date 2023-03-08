@@ -1,3 +1,4 @@
+import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { SignupComponent } from './views/home/signup/signup.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -5,8 +6,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { CartComponent } from './components/cart/cart.component';
-import { ProductsComponent } from './views/products/products.component';
 import { LoginComponent } from './views/home/login/login.component';
+import { StoreComponent } from './views/store/store.component';
+import { ShoppingComponent } from './views/shopping/shopping.component';
 
 const routes: Routes = [
   {
@@ -28,9 +30,29 @@ const routes: Routes = [
       },
     ],
   },
-  { path: 'products', component: ProductsComponent },
-  { path: 'products/:productId', component: ProductDetailsComponent },
-  { path: 'cart', component: CartComponent },
+  {
+    path: 'products',
+    component: StoreComponent,
+    children: [
+      {
+        path: '',
+        component: ProductListComponent,
+      },
+      { path: ':productId', component: ProductDetailsComponent },
+    ],
+  },
+  {
+    path: 'shopping',
+    component: ShoppingComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'cart',
+      },
+      { path: 'cart', component: CartComponent },
+    ],
+  },
 ];
 
 @NgModule({

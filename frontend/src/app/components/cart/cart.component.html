@@ -1,29 +1,31 @@
-<div>
+<div class="m-5">
+  <h4 class="text-center">Seu pedido!</h4>
   <div class="m-3">
-    <h3>Seu Carrinho:</h3>
-    <div class="cart-item" *ngFor="let item of items">
-      <span>{{ item.name }}</span>
-      <span>{{ item.price | currency : "BRL" }}</span>
+    <h5>Seu Carrinho:</h5>
+    <div *ngIf="items.length != 0; else emptyCart">
+      <div class="cart-item my-3" *ngFor="let item of items">
+        <span>{{ item.name }}</span>
+        <span>{{ item.price | currency : "BRL" }}</span>
+        <i class="material-icons" onclick="removeItem()">delete</i>
+      </div>
     </div>
+    <ng-template #emptyCart>
+      <p class="text-center my-3">Seu carrinho está vazio!</p>
+    </ng-template>
   </div>
   <div class="m-3">
-    <h3>Formas de Envio:</h3>
-    <div class="shipping-item" *ngFor="let shipping of shippingData | async">
-      <span>{{ shipping.type }}</span>
-      <span>{{ shipping.price | currency : "BRL" }}</span>
+    <h5>Formas de Envio:</h5>
+    <div class="my-3">
+      <div
+        class="shipping-item d-flex flex-column"
+        *ngFor="let shipping of shippingData | async"
+      >
+        <div class="d-flex justify-content-between mb-2">
+          <span>{{ shipping.type }}</span>
+          <span>{{ shipping.price | currency : "BRL" }}</span>
+        </div>
+        <span>{{ shipping.description }}</span>
+      </div>
     </div>
   </div>
-  <form class="m-3" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="name"> Nome </label>
-      <input id="name" type="text" formControlName="name" />
-    </div>
-
-    <div>
-      <label for="address"> Endereço </label>
-      <input id="address" type="text" formControlName="address" />
-    </div>
-
-    <button class="button" type="submit">Finalizar Compra</button>
-  </form>
 </div>

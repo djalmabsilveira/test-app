@@ -1,11 +1,16 @@
 <div class="app-container d-flex justify-content-center">
   <div class="header-component">
-    <a [routerLink]="['/']">
+    <a routerLink="/">
       <h1>My Store</h1>
     </a>
-
-    <a class="button fancy-button" routerLink="/cart">
-      <i class="material-icons">shopping_cart</i> Meu Carrinho
-    </a>
+    <div class="d-flex align-items-center">
+      <i class="material-icons text-light mr-2">person</i>
+      <a class="text-light d-flex" routerLink="/home"> Faça seu login </a>
+      <span class="text-light mx-2">ou</span>
+      <a class="text-light mr-5" routerLink="/home/signup"> Registre-se!</a>
+      <a class="button fancy-button" routerLink="shopping">
+        <i class="material-icons">shopping_cart</i> Meu Carrinho
+      </a>
+    </div>
   </div>
 </div>
