@@ -1,7 +1,10 @@
+import { Product } from './../../interfaces/product';
+import { Router } from '@angular/router';
+import { ShoppingService } from './../../services/shopping.service';
+import { Order } from './../../interfaces/order';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
-import { FormBuilder } from '@angular/forms';
 
 import { ShippingData } from './../../interfaces/shipping-data';
 @Component({
@@ -11,31 +14,27 @@ import { ShippingData } from './../../interfaces/shipping-data';
 })
 export class CartComponent implements OnInit {
   shippingData!: Observable<ShippingData[]>;
-
-  items = this.cartService.getCartItems();
-
-  checkoutForm = this.formBuilder.group({
-    name: '',
-    address: '',
-  });
+  items: Product[] = this.cartService.getCartItemsFromStorage();
+  order: Order = { products: [], shipping: '' };
 
   constructor(
     private cartService: CartService,
-    private formBuilder: FormBuilder
+    private shoppingService: ShoppingService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.shippingData = this.cartService.getShippingData();
   }
 
-  onSubmit(): void {
-    this.items = this.cartService.clearCart();
-    console.warn(
-      'Seu pedido foi recebido e está em preparação!',
-      this.checkoutForm.value
-    );
-    this.checkoutForm.reset();
+  removeItem(index: number) {
+    this.cartService.removeItemFromCart(index);
   }
 
-  removeItem() {}
+  orderSubmit() {
+    this.order.products = this.items;
+    this.shoppingService.orderSubmit(this.order).subscribe(() => {
+      this.router.navigate(['/shopping/order-summary']);
+    });
+  }
 }

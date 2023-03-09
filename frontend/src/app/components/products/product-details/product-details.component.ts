@@ -31,7 +31,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    this.cartService.addToCart(product);
+    this.cartService.addItemToCart(product);
     this.router.navigate(['shopping']);
   }
 }

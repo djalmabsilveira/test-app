@@ -19,15 +19,23 @@ export class CartService {
 
   constructor(private http: HttpClient) {}
 
-  addToCart(product: Product) {
+  addItemToCart(product: Product) {
     this.items.push(product);
-    localStorage.setItem(this.storageCartKey, JSON.stringify(this.items));
-
-    const temp = JSON.parse(localStorage.getItem(this.storageCartKey) || '[]');
-    console.log(temp);
+    this.addCartToStorage();
   }
 
-  getCartItems() {
+  addCartToStorage() {
+    localStorage.setItem(this.storageCartKey, JSON.stringify(this.items));
+  }
+
+  removeItemFromCart(index: number) {
+    if (index !== -1) {
+      this.items.splice(index, 1);
+    }
+    this.addCartToStorage();
+  }
+
+  getCartItemsFromStorage() {
     return (this.items = JSON.parse(
       localStorage.getItem(this.storageCartKey) || '[]'
     ));
@@ -35,10 +43,8 @@ export class CartService {
 
   clearCart() {
     this.items = [];
-    return this.items;
+    this.addCartToStorage();
   }
-
-  addCartToStorage() {}
 
   getShippingData(): Observable<ShippingData[]> {
     return this.http.get<ShippingData[]>(`${API_URL}/shipping-data`);

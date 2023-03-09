@@ -1,0 +1,8 @@
+.cart-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

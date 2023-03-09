@@ -18,6 +18,7 @@ import { SignupComponent } from './views/home/signup/signup.component';
 import { ValidationMessageComponent } from './components/atom-components/validation-message/validation-message.component';
 import { StoreComponent } from './views/store/store.component';
 import { ShoppingComponent } from './views/shopping/shopping.component';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ShoppingComponent } from './views/shopping/shopping.component';
     ValidationMessageComponent,
     StoreComponent,
     ShoppingComponent,
+    OrderSummaryComponent,
   ],
   imports: [
     RouterModule,

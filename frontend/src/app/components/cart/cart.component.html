@@ -1,31 +1,55 @@
-<div class="m-5 d-flex flex-column align-items-center">
-  <h4 class="text-center">Seu pedido!</h4>
-  <div class="m-3">
-    <h5>Seu Carrinho:</h5>
-    <div *ngIf="items.length != 0; else emptyCart">
-      <div class="cart-item my-3" *ngFor="let item of items">
-        <span>{{ item.name }}</span>
-        <span>{{ item.price | currency : "BRL" }}</span>
-        <i class="material-icons" onclick="removeItem()">delete</i>
-      </div>
-    </div>
-    <ng-template #emptyCart>
-      <p class="text-center my-3">Seu carrinho está vazio!</p>
-    </ng-template>
-  </div>
-  <div class="m-3">
-    <h5>Formas de Envio:</h5>
-    <div class="my-3">
-      <div
-        class="shipping-item d-flex flex-column"
-        *ngFor="let shipping of shippingData | async"
-      >
-        <div class="d-flex justify-content-between mb-2">
-          <span>{{ shipping.type }}</span>
-          <span>{{ shipping.price | currency : "BRL" }}</span>
+<div class="d-flex flex-column align-items-center">
+  <div class="p-5 w-100 d-flex flex-column align-items-center">
+    <h4 class="text-center">Seu pedido!</h4>
+    <div class="cart-container">
+      <h5>Seu Carrinho:</h5>
+      <div *ngIf="items.length != 0; else emptyCart">
+        <div class="cart-item my-3" *ngFor="let item of items; index as i">
+          <span>{{ item.name }}</span>
+          <span>{{ item.price | currency : "BRL" }}</span>
+          <i class="material-icons cursor-pointer" (click)="removeItem(i)"
+            >delete</i
+          >
         </div>
-        <span>{{ shipping.description }}</span>
+      </div>
+      <ng-template #emptyCart>
+        <p class="text-center my-3">Seu carrinho está vazio!</p>
+      </ng-template>
+    </div>
+    <div class="cart-container mt-5">
+      <h5>Formas de Envio:</h5>
+      <div class="my-3">
+        <div
+          class="shipping-item d-flex"
+          *ngFor="let shipping of shippingData | async"
+          (click)="shippingInput.click()"
+        >
+          <input
+            #shippingInput
+            type="radio"
+            id="modelo{{ shipping.type }}"
+            value="modelo{{ shipping.type }}"
+            name="shipping-card"
+            [(ngModel)]="order.shipping"
+            class="m-0 mr-4"
+          />
+          <div class="w-100">
+            <div class="d-flex justify-content-between mb-3">
+              <span>{{ shipping.type }}</span>
+              <span>{{ shipping.price | currency : "BRL" }}</span>
+            </div>
+            <span>{{ shipping.description }}</span>
+          </div>
+        </div>
       </div>
     </div>
+    <button
+      class="btn btn-primary btn-block mt-5 cart-container"
+      type="submit"
+      [disabled]="items.length == 0 || !order.shipping"
+      (click)="orderSubmit()"
+    >
+      Prosseguir para a compra
+    </button>
   </div>
 </div>

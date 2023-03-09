@@ -1,3 +1,4 @@
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { SignupComponent } from './views/home/signup/signup.component';
 import { NgModule } from '@angular/core';
@@ -44,7 +45,10 @@ const routes: Routes = [
   {
     path: 'shopping',
     component: ShoppingComponent,
-    children: [{ path: '', component: CartComponent }],
+    children: [
+      { path: '', component: CartComponent },
+      { path: 'order-summary', component: OrderSummaryComponent },
+    ],
   },
 ];
 

@@ -128,9 +128,6 @@ button:disabled {
 
 .cart-item,
 .shipping-item {
-  width: 100%;
-  min-width: 400px;
-  max-width: 450px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
