@@ -4,28 +4,107 @@
       Faça seu cadastro e aproveite milhares de ofertas!
     </h4>
 
-    <form class="form mt-4">
+    <form class="form mt-4" [formGroup]="signupForm" (submit)="signup()">
       <div class="form-group">
-        <input placeholder="email" class="form-control" />
+        <input
+          #emailInput
+          placeholder="e-mail"
+          class="form-control"
+          formControlName="email"
+        />
+        <app-validation-message
+          *ngIf="signupForm.get('email')?.errors?.['required'] && signupForm.get('email')?.touched"
+          message="Campo obrigatório!"
+        ></app-validation-message>
+        <app-validation-message
+          *ngIf="signupForm.get('email')?.errors?.['email']"
+          message="Digite um email valido: usuario@exemplo.com"
+        ></app-validation-message>
       </div>
 
       <div class="form-group">
-        <input placeholder="full name" class="form-control" />
+        <input
+          placeholder="Nome completo"
+          class="form-control"
+          formControlName="fullName"
+        />
+        <app-validation-message
+          *ngIf="
+            signupForm.get('fullName')?.errors?.['required'] &&
+            signupForm.get('fullName')?.touched
+          "
+          message="Campo obrigatório!"
+        ></app-validation-message>
+        <app-validation-message
+          *ngIf="signupForm.get('fullName')?.errors?.['minlength']"
+          message="O nome deve ter no mínimo 5 caracteres"
+        ></app-validation-message>
+        <app-validation-message
+          *ngIf="signupForm.get('fullName')?.errors?.['maxlength']"
+          message="O nome deve ter no máximo 40 caracteres"
+        ></app-validation-message>
       </div>
 
       <div class="form-group">
-        <input placeholder="user name" class="form-control" />
+        <input
+          placeholder="username"
+          class="form-control"
+          formControlName="userName"
+        />
+        <app-validation-message
+          *ngIf="
+            signupForm.get('userName')?.errors?.['required'] &&
+            signupForm.get('userName')?.touched
+          "
+          message="Campo obrigatório!"
+        ></app-validation-message>
+        <app-validation-message
+          *ngIf="signupForm.get('userName')?.errors?.['minlength']"
+          message="O nome de usuário deve ter no mínimo 2 caracteres"
+        ></app-validation-message>
+        <app-validation-message
+          *ngIf="signupForm.get('userName')?.errors?.['maxlength']"
+          message="O nome de usuário deve ter no máximo 30 caracteres"
+        ></app-validation-message>
+        <small *ngIf="signupForm.get('userName')?.valid" class="text-success"
+          >Nome de usuário disponível!</small
+        >
       </div>
 
       <div class="form-group">
-        <input type="password" placeholder="password" class="form-control" />
+        <input
+          type="password"
+          placeholder="Senha"
+          class="form-control"
+          formControlName="password"
+        />
+        <app-validation-message
+          *ngIf="
+            signupForm.get('password')?.errors?.['required'] &&
+            signupForm.get('password')?.touched
+          "
+          message="Campo obrigatório!"
+        ></app-validation-message>
+        <app-validation-message
+          *ngIf="signupForm.get('password')?.errors?.['minlength']"
+          message="A senha deve ter no mínimo 8 caracteres"
+        ></app-validation-message>
+        <app-validation-message
+          *ngIf="signupForm.get('password')?.errors?.['maxlength']"
+          message="A senha deve ter no máximo 18 caracteres"
+        ></app-validation-message>
       </div>
 
-      <button class="btn btn-primary btn-block">Register</button>
-
-      <p class="text-center mt-3">
-        Já possui cadastro?<a routerLink="/home"> Faça seu login!</a>
-      </p>
+      <button
+        class="btn btn-primary btn-block"
+        type="submit"
+        [disabled]="signupForm.invalid || signupForm.pending"
+      >
+        Registrar-se
+      </button>
     </form>
+    <p class="text-center mt-3">
+      Já é usuário? <a routerLink="/home">Faça seu login!</a>
+    </p>
   </div>
 </div>

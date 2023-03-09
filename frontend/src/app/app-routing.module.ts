@@ -44,14 +44,7 @@ const routes: Routes = [
   {
     path: 'shopping',
     component: ShoppingComponent,
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'cart',
-      },
-      { path: 'cart', component: CartComponent },
-    ],
+    children: [{ path: '', component: CartComponent }],
   },
 ];
 

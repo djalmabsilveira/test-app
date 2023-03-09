@@ -12,8 +12,7 @@ import { CartService } from './../../../services/cart.service';
   styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
-  products$!: Observable<Product[]>;
-  product: Product | undefined;
+  product!: Product;
 
   constructor(
     private route: ActivatedRoute,
