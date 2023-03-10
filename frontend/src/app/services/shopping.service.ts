@@ -1,3 +1,4 @@
+import { Product } from 'src/app/interfaces/product';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Order } from './../interfaces/order';
@@ -33,5 +34,13 @@ export class ShoppingService {
 
   findShippingByID(id: string): Observable<ShippingData> {
     return this.http.get<ShippingData>(`${API_URL}/shipping-data/${id}`);
+  }
+
+  calculateTotalCost(items: Product[]) {
+    let total = 0;
+    for (let index = 0; index < items.length; index++) {
+      total += Number(items[index].price);
+    }
+    return total;
   }
 }

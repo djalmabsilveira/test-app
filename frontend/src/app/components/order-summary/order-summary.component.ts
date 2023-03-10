@@ -15,9 +15,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class OrderSummaryComponent implements OnInit {
   order = this.shoppingService.getOrderFromStorage();
-  items!: Product[];
+  items: Product[] = this.order.products;
   shipping!: ShippingData;
-  totalCost!: number;
+  totalCost: number = this.shoppingService.calculateTotalCost(this.items);
   signupForm!: FormGroup;
 
   constructor(
@@ -28,7 +28,7 @@ export class OrderSummaryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const shipping = this.order.shipping;
+    const shippingID = this.order.shipping;
 
     this.signupForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -66,23 +66,13 @@ export class OrderSummaryComponent implements OnInit {
       ],
     });
 
-    this.items = this.order.products;
-    this.totalCost = this.calculateTotalCost();
-    this.getShippingData(shipping);
-  }
-
-  calculateTotalCost() {
-    let total = 0;
-    for (let index = 0; index < this.items.length; index++) {
-      total += Number(this.items[index].price);
-    }
-    return total;
+    this.getShippingData(shippingID);
   }
 
   getShippingData(id: string) {
     this.shoppingService
       .findShippingByID(id)
-      .subscribe((data) => (this.shipping = data));
+      .subscribe((shippingData) => (this.shipping = shippingData));
   }
 
   signup() {
@@ -90,11 +80,10 @@ export class OrderSummaryComponent implements OnInit {
     this.userService.signup(newUser).subscribe(
       (user) => {
         this.order.userId = user.id;
-        this.shoppingService
-          .orderSubmit(this.order)
-          .subscribe(() =>
-            this.router.navigate(['/shopping/completed-purchase'])
-          );
+        this.shoppingService.orderSubmit(this.order).subscribe((order) => {
+          this.shoppingService.orderSave(order);
+          this.router.navigate(['/shopping/completed-purchase']);
+        });
       },
       (err) => console.log(err)
     );

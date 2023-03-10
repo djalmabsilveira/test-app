@@ -48,8 +48,8 @@ export class CartService {
     return this.http.post<Order>(`${API_URL}/orders`, order);
   }
 
-  clearCart() {
+  clearStorage() {
     this.items = [];
-    this.addCartToStorage();
+    localStorage.clear();
   }
 }

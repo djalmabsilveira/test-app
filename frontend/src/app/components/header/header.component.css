@@ -1,0 +1,28 @@
+.mobile-menu-button {
+  display: none;
+}
+
+.mobile-menu-button i {
+  font-size: 36px;
+}
+
+@media (max-width: 750px) {
+  /* .desktop-menu {
+    display: none;
+  } */
+
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .mobile-menu {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #1976d2;
+    margin: 10px rgba(0, 0, 0, 0);
+  }
+} ;

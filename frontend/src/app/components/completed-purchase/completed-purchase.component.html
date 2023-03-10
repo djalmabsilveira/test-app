@@ -1,10 +1,10 @@
-<!-- <h2 class="text-center mt-5">Parabens pela sua compra</h2>
+<h2 class="text-center mt-5">Parabens pela sua compra!</h2>
 <div class="d-flex justify-content-center w-100">
   <div class="d-flex justify-content-center flex-wrap py-5 w-100 max-width">
     <div class="w-50 px-5 order-block border-right">
-      <h4 class="text-center">Resumo da sua compra:</h4>
-      <div class="cart-item">
-        <div class="my-3" *ngFor="let item of items">
+      <div class="p-3 bg-primary rounded">
+        <h4 class="text-center text-light">Resumo da sua compra:</h4>
+        <div class="my-3 cart-item" *ngFor="let item of items">
           <span>{{ item.name }}</span>
           <span>{{ item.price | currency : "BRL" }}</span>
         </div>
@@ -12,7 +12,7 @@
           <span>Valor total da compra:</span>
           <span>{{ totalCost | currency : "BRL" }}</span>
         </div>
-        <h4 class="text-center">Forma de envio selecionada:</h4>
+        <h4 class="text-center text-light">Forma de envio selecionada:</h4>
         <div class="shipping-item d-flex">
           <div class="w-100" *ngIf="shipping">
             <div class="d-flex justify-content-between mb-3">
@@ -27,7 +27,48 @@
     <div
       class="d-flex flex-column justify-content-center w-50 px-5 order-block"
     >
-      <h4 class="text-center">Faça seu cadastro!</h4>
+      <div class="list-group" *ngIf="user$ | async as user">
+        <div
+          class="list-group-item list-group-item-action flex-column align-items-start"
+        >
+          <div class="w-100">
+            <h4 class="text-center my-2">Seus dados</h4>
+          </div>
+        </div>
+        <div
+          class="list-group-item list-group-item-action flex-column align-items-start"
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ user.fullName }}</h5>
+          </div>
+        </div>
+        <div
+          class="list-group-item list-group-item-action flex-column align-items-start"
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">E-mail de contato:</h5>
+          </div>
+          <p class="mb-1">
+            {{ user.email }}
+          </p>
+        </div>
+        <div
+          class="list-group-item list-group-item-action flex-column align-items-start"
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Endereço de entrega:</h5>
+          </div>
+          <p class="mb-1">
+            {{ user.address }}
+          </p>
+        </div>
+      </div>
+      <button
+        class="btn btn-primary btn-block mt-5 cart-container"
+        routerLink=""
+      >
+        Voltar para a loja
+      </button>
     </div>
   </div>
-</div> -->
+</div>

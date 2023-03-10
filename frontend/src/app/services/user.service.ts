@@ -15,4 +15,8 @@ export class UserService {
   signup(newUser: User): Observable<User> {
     return this.http.post<User>(`${API_URL}/users`, newUser);
   }
+
+  findUserByID(id: string): Observable<User> {
+    return this.http.get<User>(`${API_URL}/users/${id}`);
+  }
 }
