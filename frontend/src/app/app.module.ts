@@ -13,12 +13,13 @@ import { ProductListComponent } from './components/products/product-list/product
 import { ProductCardComponent } from './components/products/product-card/product-card.component';
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { CartComponent } from './components/cart/cart.component';
-import { LoginComponent } from './views/home/login/login.component';
-import { SignupComponent } from './views/home/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { ValidationMessageComponent } from './components/atom-components/validation-message/validation-message.component';
 import { StoreComponent } from './views/store/store.component';
 import { ShoppingComponent } from './views/shopping/shopping.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { CompletedPurchaseComponent } from './components/completed-purchase/completed-purchase.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { OrderSummaryComponent } from './components/order-summary/order-summary.
     StoreComponent,
     ShoppingComponent,
     OrderSummaryComponent,
+    CompletedPurchaseComponent,
   ],
   imports: [
     RouterModule,

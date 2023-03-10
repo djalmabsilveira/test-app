@@ -33,8 +33,7 @@ export class CartComponent implements OnInit {
 
   orderSubmit() {
     this.order.products = this.items;
-    this.shoppingService.orderSubmit(this.order).subscribe(() => {
-      this.router.navigate(['/shopping/order-summary']);
-    });
+    this.shoppingService.orderSave(this.order);
+    this.router.navigate(['/shopping/order-summary']);
   }
 }

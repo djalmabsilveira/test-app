@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/product';
 import { ShippingData } from './../interfaces/shipping-data';
 import { environment } from './../../environments/environment.prod';
+import { Order } from '../interfaces/order';
 
 const API_URL = environment.API_URL;
 @Injectable({
@@ -12,8 +13,6 @@ const API_URL = environment.API_URL;
 })
 export class CartService {
   items: Product[] = [];
-
-  // JSON.parse(localStorage.getItem(this.cartKey) || '[]');
 
   storageCartKey = 'cartItems';
 
@@ -41,12 +40,16 @@ export class CartService {
     ));
   }
 
+  getShippingData(): Observable<ShippingData[]> {
+    return this.http.get<ShippingData[]>(`${API_URL}/shipping-data`);
+  }
+
+  orderSubmit(order: Order): Observable<Order> {
+    return this.http.post<Order>(`${API_URL}/orders`, order);
+  }
+
   clearCart() {
     this.items = [];
     this.addCartToStorage();
-  }
-
-  getShippingData(): Observable<ShippingData[]> {
-    return this.http.get<ShippingData[]>(`${API_URL}/shipping-data`);
   }
 }

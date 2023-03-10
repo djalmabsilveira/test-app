@@ -1,0 +1,12 @@
+.max-width {
+  max-width: 1875px;
+}
+
+@media (max-width: 1200px) {
+  .order-block {
+    border: 0 !important;
+    margin-bottom: 48px;
+    width: 100% !important;
+    max-width: 600px;
+  }
+}

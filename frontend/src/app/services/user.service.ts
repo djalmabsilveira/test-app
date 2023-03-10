@@ -2,21 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Product } from '../interfaces/product';
+import { User } from '../interfaces/user';
 
 const API_URL = environment.API_URL;
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService {
+export class UserService {
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${API_URL}/products`);
-  }
-
-  findProductById(productId: number): Observable<Product> {
-    return this.http.get<Product>(`${API_URL}/products/${productId}`);
+  signup(newUser: User): Observable<User> {
+    return this.http.post<User>(`${API_URL}/users`, newUser);
   }
 }

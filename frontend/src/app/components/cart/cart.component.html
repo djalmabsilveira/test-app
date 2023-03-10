@@ -27,8 +27,8 @@
           <input
             #shippingInput
             type="radio"
-            id="modelo{{ shipping.type }}"
-            value="modelo{{ shipping.type }}"
+            id="{{ shipping.id }}"
+            value="{{ shipping.id }}"
             name="shipping-card"
             [(ngModel)]="order.shipping"
             class="m-0 mr-4"
