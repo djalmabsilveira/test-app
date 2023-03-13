@@ -8,10 +8,18 @@
         <i class="material-icons text-light">menu</i>
       </button>
       <div class="d-flex align-items-center desktop-menu mobile-menu">
-        <i class="material-icons text-light mr-2">person</i>
-        <a class="text-light d-flex" routerLink="/home"> Faça seu login </a>
-        <span class="text-light mx-2">ou</span>
-        <a class="text-light mr-5" routerLink="/home/signup"> Registre-se!</a>
+        <div class="d-flex align-items-center">
+          <i class="material-icons text-light mr-2">person</i>
+          <a class="text-light d-flex" routerLink="/home"> Faça seu login </a>
+          <span class="text-light mx-2">ou</span>
+          <a class="text-light mr-5" routerLink="/home/signup"> Registre-se!</a>
+        </div>
+        <ng-template #userIsLogged>
+          <i class="material-icons text-light mr-1">person</i>
+          <span class="text-light mx-2">Bem Vindo!</span>
+
+          <a class="text-light d-flex mx-4" (click)="logout()"> Logout... </a>
+        </ng-template>
         <a class="button fancy-button" routerLink="shopping">
           <i class="material-icons">shopping_cart</i> Meu Carrinho
         </a>

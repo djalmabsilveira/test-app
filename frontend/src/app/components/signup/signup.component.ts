@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/app/interfaces/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -9,7 +12,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
@@ -41,5 +48,11 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  signup() {}
+  signup() {
+    const newUser = this.signupForm.getRawValue() as User;
+    this.userService.signup(newUser).subscribe(
+      () => this.router.navigate(['home']),
+      (err) => console.log(err)
+    );
+  }
 }

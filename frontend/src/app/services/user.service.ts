@@ -1,22 +1,50 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from '../interfaces/user';
+import { LoginUser, User } from '../interfaces/user';
+import { TokenService } from './token.service';
 
 const API_URL = environment.API_URL;
+const KEY = 'loggedUser';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
 
   signup(newUser: User): Observable<User> {
     return this.http.post<User>(`${API_URL}/users`, newUser);
   }
 
+  login(user: LoginUser): Observable<User> {
+    return this.http.post<User>(`${API_URL}/users`, user);
+  }
+
   findUserByID(id: string): Observable<User> {
     return this.http.get<User>(`${API_URL}/users/${id}`);
+  }
+
+  findUserByUserName(userName: string): Observable<User[]> {
+    return this.http.get<User[]>(`${API_URL}/users?userName=${userName}`);
+  }
+
+  setUserToStorage(user: User) {
+    let loggedUser = {
+      email: user.email,
+      fullName: user.fullName,
+      addres: user.address,
+    };
+
+    window.localStorage.setItem(KEY, JSON.stringify(loggedUser));
+  }
+
+  getUserFromStorage() {
+    return localStorage.getItem(KEY) || '{}';
+  }
+
+  logout() {
+    this.tokenService.removeToken();
   }
 }

@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center login-screen">
-  <div class="d-flex flex-wrap py-5 login-home">
+  <div class="d-flex justify-content-center flex-wrap py-5 login-home">
     <div class="login-content px-5">
       <h2 class="text-center">Login</h2>
       <form class="form mt-4" [formGroup]="loginForm">
@@ -34,13 +34,14 @@
           type="submit"
           class="btn btn-primary btn-block"
           [disabled]="loginForm.invalid"
+          (click)="login()"
         >
           Login
         </button>
       </form>
     </div>
     <div
-      class="register-content d-flex flex-column justify-content-center px-5"
+      class="register-content d-flex flex-column justify-content-center mt-3 px-5"
     >
       <h6 class="text-center mt-5">Não tem cadastro?</h6>
       <button class="btn btn-primary btn-block mb-5" routerLink="signup">

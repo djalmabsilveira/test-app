@@ -6,3 +6,14 @@ export interface User {
   password: string;
   address: string;
 }
+
+export interface LoginUser {
+  userName: string;
+  password: string;
+}
+
+export interface LoggedUser {
+  email?: string;
+  fullName?: string;
+  address?: string;
+}
