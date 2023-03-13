@@ -3,7 +3,7 @@ export interface User {
   email: string;
   fullName: string;
   userName: string;
-  password: string;
+  password?: string;
   address: string;
 }
 
@@ -12,8 +12,8 @@ export interface LoginUser {
   password: string;
 }
 
-export interface LoggedUser {
-  email?: string;
-  fullName?: string;
-  address?: string;
+export interface UserData {
+  email: string;
+  fullName: string;
+  address: string;
 }

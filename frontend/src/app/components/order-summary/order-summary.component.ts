@@ -1,3 +1,6 @@
+import { UserData } from './../../interfaces/user';
+import { TokenService } from './../../services/token.service';
+import { UtilitiesService } from './../../services/utilities.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,16 +22,22 @@ export class OrderSummaryComponent implements OnInit {
   shipping!: ShippingData;
   totalCost: number = this.shoppingService.calculateTotalCost(this.items);
   signupForm!: FormGroup;
+  isLogged!: boolean;
+  user!: User;
 
   constructor(
     private formBuilder: FormBuilder,
     private shoppingService: ShoppingService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) {}
 
   ngOnInit(): void {
     const shippingID = this.order.shipping;
+    this.isLogged = this.userService.isLogged();
+
+    this.user = this.tokenService.decodeToken();
 
     this.signupForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -75,7 +84,7 @@ export class OrderSummaryComponent implements OnInit {
       .subscribe((shippingData) => (this.shipping = shippingData));
   }
 
-  signup() {
+  signupAndOrder() {
     const newUser = this.signupForm.getRawValue() as User;
     this.userService.signup(newUser).subscribe(
       (user) => {
@@ -87,5 +96,14 @@ export class OrderSummaryComponent implements OnInit {
       },
       (err) => console.log(err)
     );
+  }
+
+  orderSubmit() {
+    const userId = this.userService.getUserFromStorage().id;
+    this.order.userId = userId;
+    this.shoppingService.orderSubmit(this.order).subscribe((order) => {
+      this.shoppingService.orderSave(order);
+      this.router.navigate(['/shopping/completed-purchase']);
+    });
   }
 }

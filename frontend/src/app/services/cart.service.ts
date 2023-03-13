@@ -44,12 +44,8 @@ export class CartService {
     return this.http.get<ShippingData[]>(`${API_URL}/shipping-data`);
   }
 
-  orderSubmit(order: Order): Observable<Order> {
-    return this.http.post<Order>(`${API_URL}/orders`, order);
-  }
-
   clearStorage() {
     this.items = [];
-    localStorage.clear();
+    localStorage.removeItem(this.storageCartKey);
   }
 }

@@ -25,129 +25,184 @@
     <div
       class="d-flex flex-column justify-content-center w-50 px-5 order-block"
     >
-      <h4 class="text-center">Faça seu cadastro!</h4>
-      <form class="form mt-4" [formGroup]="signupForm" (submit)="signup()">
-        <div class="form-group">
-          <input
-            #emailInput
-            placeholder="e-mail"
-            class="form-control"
-            formControlName="email"
-          />
-          <app-validation-message
-            *ngIf="signupForm.get('email')?.errors?.['required'] && signupForm.get('email')?.touched"
-            message="Campo obrigatório!"
-          ></app-validation-message>
-          <app-validation-message
-            *ngIf="signupForm.get('email')?.errors?.['email']"
-            message="Digite um email valido: usuario@exemplo.com"
-          ></app-validation-message>
-        </div>
+      <div *ngIf="!isLogged; else userLogged">
+        <h4 class="text-center">Faça seu cadastro!</h4>
+        <form
+          class="form mt-4"
+          [formGroup]="signupForm"
+          (submit)="signupAndOrder()"
+        >
+          <div class="form-group">
+            <input
+              #emailInput
+              placeholder="e-mail"
+              class="form-control"
+              formControlName="email"
+            />
+            <app-validation-message
+              *ngIf="signupForm.get('email')?.errors?.['required'] && signupForm.get('email')?.touched"
+              message="Campo obrigatório!"
+            ></app-validation-message>
+            <app-validation-message
+              *ngIf="signupForm.get('email')?.errors?.['email']"
+              message="Digite um email valido: usuario@exemplo.com"
+            ></app-validation-message>
+          </div>
 
-        <div class="form-group">
-          <input
-            placeholder="Nome completo"
-            class="form-control"
-            formControlName="fullName"
-          />
-          <app-validation-message
-            *ngIf="
+          <div class="form-group">
+            <input
+              placeholder="Nome completo"
+              class="form-control"
+              formControlName="fullName"
+            />
+            <app-validation-message
+              *ngIf="
               signupForm.get('fullName')?.errors?.['required'] &&
               signupForm.get('fullName')?.touched
             "
-            message="Campo obrigatório!"
-          ></app-validation-message>
-          <app-validation-message
-            *ngIf="signupForm.get('fullName')?.errors?.['minlength']"
-            message="O nome deve ter no mínimo 5 caracteres"
-          ></app-validation-message>
-          <app-validation-message
-            *ngIf="signupForm.get('fullName')?.errors?.['maxlength']"
-            message="O nome deve ter no máximo 40 caracteres"
-          ></app-validation-message>
-        </div>
+              message="Campo obrigatório!"
+            ></app-validation-message>
+            <app-validation-message
+              *ngIf="signupForm.get('fullName')?.errors?.['minlength']"
+              message="O nome deve ter no mínimo 5 caracteres"
+            ></app-validation-message>
+            <app-validation-message
+              *ngIf="signupForm.get('fullName')?.errors?.['maxlength']"
+              message="O nome deve ter no máximo 40 caracteres"
+            ></app-validation-message>
+          </div>
 
-        <div class="form-group">
-          <input
-            placeholder="username"
-            class="form-control"
-            formControlName="userName"
-          />
-          <app-validation-message
-            *ngIf="
+          <div class="form-group">
+            <input
+              placeholder="username"
+              class="form-control"
+              formControlName="userName"
+            />
+            <app-validation-message
+              *ngIf="
               signupForm.get('userName')?.errors?.['required'] &&
               signupForm.get('userName')?.touched
             "
-            message="Campo obrigatório!"
-          ></app-validation-message>
-          <app-validation-message
-            *ngIf="signupForm.get('userName')?.errors?.['minlength']"
-            message="O nome de usuário deve ter no mínimo 2 caracteres"
-          ></app-validation-message>
-          <app-validation-message
-            *ngIf="signupForm.get('userName')?.errors?.['maxlength']"
-            message="O nome de usuário deve ter no máximo 30 caracteres"
-          ></app-validation-message>
-          <small *ngIf="signupForm.get('userName')?.valid" class="text-success"
-            >Nome de usuário disponível!</small
-          >
-        </div>
+              message="Campo obrigatório!"
+            ></app-validation-message>
+            <app-validation-message
+              *ngIf="signupForm.get('userName')?.errors?.['minlength']"
+              message="O nome de usuário deve ter no mínimo 2 caracteres"
+            ></app-validation-message>
+            <app-validation-message
+              *ngIf="signupForm.get('userName')?.errors?.['maxlength']"
+              message="O nome de usuário deve ter no máximo 30 caracteres"
+            ></app-validation-message>
+            <small
+              *ngIf="signupForm.get('userName')?.valid"
+              class="text-success"
+              >Nome de usuário disponível!</small
+            >
+          </div>
 
-        <div class="form-group">
-          <input
-            type="password"
-            placeholder="Senha"
-            class="form-control"
-            formControlName="password"
-          />
-          <app-validation-message
-            *ngIf="
+          <div class="form-group">
+            <input
+              type="password"
+              placeholder="Senha"
+              class="form-control"
+              formControlName="password"
+            />
+            <app-validation-message
+              *ngIf="
               signupForm.get('password')?.errors?.['required'] &&
               signupForm.get('password')?.touched
             "
-            message="Campo obrigatório!"
-          ></app-validation-message>
-          <app-validation-message
-            *ngIf="signupForm.get('password')?.errors?.['minlength']"
-            message="A senha deve ter no mínimo 8 caracteres"
-          ></app-validation-message>
-          <app-validation-message
-            *ngIf="signupForm.get('password')?.errors?.['maxlength']"
-            message="A senha deve ter no máximo 18 caracteres"
-          ></app-validation-message>
-        </div>
+              message="Campo obrigatório!"
+            ></app-validation-message>
+            <app-validation-message
+              *ngIf="signupForm.get('password')?.errors?.['minlength']"
+              message="A senha deve ter no mínimo 8 caracteres"
+            ></app-validation-message>
+            <app-validation-message
+              *ngIf="signupForm.get('password')?.errors?.['maxlength']"
+              message="A senha deve ter no máximo 18 caracteres"
+            ></app-validation-message>
+          </div>
 
-        <div class="form-group">
-          <input
-            placeholder="Endereço"
-            class="form-control"
-            formControlName="address"
-          />
-          <app-validation-message
-            *ngIf="
+          <div class="form-group">
+            <input
+              placeholder="Endereço"
+              class="form-control"
+              formControlName="address"
+            />
+            <app-validation-message
+              *ngIf="
               signupForm.get('address')?.errors?.['required'] &&
               signupForm.get('address')?.touched
             "
-            message="Campo obrigatório!"
-          ></app-validation-message>
-          <app-validation-message
-            *ngIf="signupForm.get('address')?.errors?.['minlength']"
-            message="O nome de usuário deve ter no mínimo 10 caracteres"
-          ></app-validation-message>
-          <app-validation-message
-            *ngIf="signupForm.get('address')?.errors?.['maxlength']"
-            message="O nome de usuário deve ter no máximo 40 caracteres"
-          ></app-validation-message>
-        </div>
+              message="Campo obrigatório!"
+            ></app-validation-message>
+            <app-validation-message
+              *ngIf="signupForm.get('address')?.errors?.['minlength']"
+              message="O nome de usuário deve ter no mínimo 10 caracteres"
+            ></app-validation-message>
+            <app-validation-message
+              *ngIf="signupForm.get('address')?.errors?.['maxlength']"
+              message="O nome de usuário deve ter no máximo 40 caracteres"
+            ></app-validation-message>
+          </div>
 
-        <button
-          class="btn btn-primary btn-block"
-          type="submit"
-          [disabled]="signupForm.invalid || signupForm.pending"
-        >
-          Finalizar compra!
-        </button>
-      </form>
+          <button
+            class="btn btn-primary btn-block"
+            type="submit"
+            [disabled]="signupForm.invalid || signupForm.pending"
+          >
+            Finalizar compra!
+          </button>
+        </form>
+      </div>
     </div>
+    <ng-template
+      #userLogged
+      class="d-flex flex-column justify-content-center w-50 px-5 order-block"
+    >
+      <div class="list-group" *ngIf="user">
+        <div
+          class="list-group-item list-group-item-action flex-column align-items-start"
+        >
+          <div class="w-100">
+            <h4 class="text-center my-2">Seus dados</h4>
+          </div>
+        </div>
+        <div
+          class="list-group-item list-group-item-action flex-column align-items-start"
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ user.fullName }}</h5>
+          </div>
+        </div>
+        <div
+          class="list-group-item list-group-item-action flex-column align-items-start"
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">E-mail de contato:</h5>
+          </div>
+          <p class="mb-1">
+            {{ user.email }}
+          </p>
+        </div>
+        <div
+          class="list-group-item list-group-item-action flex-column align-items-start"
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Endereço de entrega:</h5>
+          </div>
+          <p class="mb-1">
+            {{ user.address }}
+          </p>
+        </div>
+      </div>
+      <button
+        class="btn btn-primary btn-block mt-5 cart-container"
+        (click)="orderSubmit()"
+      >
+        Finalizar compra!
+      </button>
+    </ng-template>
   </div>
 </div>

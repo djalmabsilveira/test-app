@@ -30,21 +30,15 @@ export class UserService {
     return this.http.get<User[]>(`${API_URL}/users?userName=${userName}`);
   }
 
-  setUserToStorage(user: User) {
-    let loggedUser = {
-      email: user.email,
-      fullName: user.fullName,
-      addres: user.address,
-    };
-
-    window.localStorage.setItem(KEY, JSON.stringify(loggedUser));
-  }
-
   getUserFromStorage() {
-    return localStorage.getItem(KEY) || '{}';
+    return JSON.parse(localStorage.getItem(KEY) || '{}');
   }
 
   logout() {
     this.tokenService.removeToken();
+  }
+
+  isLogged() {
+    return this.tokenService.hasToken();
   }
 }

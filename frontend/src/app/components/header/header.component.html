@@ -4,26 +4,56 @@
       <h1>My Store</h1>
     </a>
     <div>
-      <button class="mobile-menu-button">
+      <button class="mobile-menu-button" (click)="openMenu()">
         <i class="material-icons text-light">menu</i>
       </button>
-      <div class="d-flex align-items-center desktop-menu mobile-menu">
-        <div class="d-flex align-items-center">
-          <i class="material-icons text-light mr-2">person</i>
-          <a class="text-light d-flex" routerLink="/home"> Faça seu login </a>
-          <span class="text-light mx-2">ou</span>
-          <a class="text-light mr-5" routerLink="/home/signup"> Registre-se!</a>
+      <div id="menu-background" class="d-flex align-items-center">
+        <div id="menu" class="desktop-menu">
+          <button
+            id="mobile-menu-close-button"
+            class="mobile-menu-close-button"
+            (click)="closeMenu()"
+          >
+            <i class="material-icons text-light">close</i>
+          </button>
+          <div
+            *ngIf="!isLogged; else userIsLogged"
+            class="d-flex align-items-center"
+          >
+            <i class="material-icons text-light mr-2 mobile-spacing">person</i>
+            <a
+              class="text-light d-flex mobile-spacing"
+              routerLink="/home"
+              (click)="closeMenu()"
+            >
+              Faça seu login
+            </a>
+            <span class="text-light mx-2 mobile-spacing">ou</span>
+            <a
+              class="text-light mr-5 mobile-spacing"
+              routerLink="/home/signup"
+              (click)="closeMenu()"
+            >
+              Registre-se!</a
+            >
+          </div>
+          <a
+            class="button fancy-button mobile-spacing"
+            routerLink="shopping"
+            (click)="closeMenu()"
+          >
+            <i class="material-icons mobile-spacing">shopping_cart</i> Meu
+            Carrinho
+          </a>
         </div>
-        <ng-template #userIsLogged>
-          <i class="material-icons text-light mr-1">person</i>
-          <span class="text-light mx-2">Bem Vindo!</span>
-
-          <a class="text-light d-flex mx-4" (click)="logout()"> Logout... </a>
-        </ng-template>
-        <a class="button fancy-button" routerLink="shopping">
-          <i class="material-icons">shopping_cart</i> Meu Carrinho
-        </a>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #userIsLogged>
+  <i class="material-icons text-light mr-1">person</i>
+  <span class="text-light mx-2">Bem Vindo!</span>
+
+  <a class="text-light d-flex mx-4" (click)="logout()"> Logout... </a>
+</ng-template>

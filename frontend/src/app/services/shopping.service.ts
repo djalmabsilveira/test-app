@@ -1,3 +1,4 @@
+import { CartService } from 'src/app/services/cart.service';
 import { Product } from 'src/app/interfaces/product';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -14,13 +15,14 @@ const API_URL = environment.API_URL;
 export class ShoppingService {
   orderKey = 'order';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cartService: CartService) {}
 
   orderSave(order: Order) {
     localStorage.setItem(this.orderKey, JSON.stringify(order));
   }
 
   orderSubmit(order: Order): Observable<Order> {
+    this.cartService.clearStorage();
     return this.http.post<Order>(`${API_URL}/orders`, order);
   }
 
